@@ -7,7 +7,7 @@
 <a href="#使用">使用</a> · <a href="#失败处理">失败处理</a> · <a href="#配置">配置</a> · <a href="#安装">安装</a> · <a href="#安全与风险">安全与风险</a> · <a href="#兼容性">兼容性</a>
 
 <p>
-  <img src="https://img.shields.io/badge/version-v0.4.0-4d6bfe" alt="version">
+  <img src="https://img.shields.io/badge/version-v0.1.0-4d6bfe" alt="version">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="license"></a>
   <a href="#兼容性"><img src="https://img.shields.io/badge/DSH-%3E%3D0.2.2--rc.3-4d6bfe" alt="DSH"></a>
   <a href="#兼容性"><img src="https://img.shields.io/badge/Node.js-%3E%3D22.19-339933" alt="Node.js"></a>
@@ -106,7 +106,33 @@ DeepSeek Harness 内置的 `subagent` 工具虽然能指定子模型，但模型
 
 ## 安装
 
-桌面端在 **Plugins** > **Add plugin** 中选择本目录；或由 Agent 通过 `plugin_manager` 的 `install_bundle` 安装本目录。安装后在新会话中生效。
+需要 DSH `0.2.2-rc.3` 或更新版本、Node.js `22.19` 或更新版本。
+
+### 桌面端
+
+先完全退出桌面应用，再执行：
+
+```sh
+dsh plugin --profile desktop add github:xuanfenglajiao/dsh-query-scout
+```
+
+从本地目录安装：
+
+```sh
+dsh plugin --profile desktop add link:<本目录的绝对路径>
+```
+
+也可以在桌面端 **Plugins** > **Add plugin** 中选择本地目录，或由 Agent 通过 `plugin_manager` 的 `install_bundle` 安装。安装后重启应用并在新会话中生效。
+
+### Web 端
+
+```sh
+dsh plugin --profile web add github:xuanfenglajiao/dsh-query-scout
+```
+
+安装后重启 `dsh web`，再刷新页面。
+
+**卸载**：把 `add` 换成 `remove dsh-query-scout`。桌面端也可以在 **Plugins** 中移除。
 
 ## 安全与风险
 
