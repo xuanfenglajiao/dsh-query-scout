@@ -113,7 +113,7 @@ DeepSeek Harness 内置的 `subagent` 工具虽然能指定子模型，但模型
 先完全退出桌面应用，再执行：
 
 ```sh
-dsh plugin --profile desktop add github:xuanfenglajiao/dsh-query-scout
+dsh plugin --profile desktop add dsh-query-scout
 ```
 
 从本地目录安装：
@@ -127,7 +127,7 @@ dsh plugin --profile desktop add link:<本目录的绝对路径>
 ### Web 端
 
 ```sh
-dsh plugin --profile web add github:xuanfenglajiao/dsh-query-scout
+dsh plugin --profile web add dsh-query-scout
 ```
 
 安装后重启 `dsh web`，再刷新页面。
