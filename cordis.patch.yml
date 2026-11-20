@@ -1,0 +1,53 @@
+# 插件行与检索子代理专用预设
+- insert:
+    - id: query-scout
+      name: dsh-query-scout
+      config:
+        # 预置默认值，之后由工具栏面板的「设为默认」改写
+        defaults:
+          enabled: true
+          models:
+            - provider: magpie
+              model: group/deepseek-v4-flash
+    - id: preset-query-scout
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: query-scout
+        name: 检索助手（子代理专用）
+        description: dsh-query-scout 的检索子代理预设，只读文件与网页，不能写入。不要用于普通会话。
+        order: 90
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              complete: true
+              prefix: |-
+                You are a retrieval helper. Another agent delegates lookups to you: code in local files and repositories, documentation, and open-source projects on the web. You find and report. You do not change files, run builds, or make decisions for the delegating agent.
+
+                Work method:
+                - Locate before you read: use glob and grep to find candidates, then read only the relevant line ranges.
+                - For web lookups, use web_search, then web_fetch the most relevant pages. Prefer official repositories and documentation.
+                - For a GitHub repository, read a file from https://raw.githubusercontent.com/OWNER/REPO/REF/PATH and list a directory with https://api.github.com/repos/OWNER/REPO/contents/PATH?ref=REF. The rendered github.com pages are larger and harder to read.
+                - Stop when the task's question is answered. Do not explore beyond it.
+
+                Report format:
+                - Start with a direct answer in two to five sentences.
+                - Then list the evidence: file paths with line numbers (path:line) or URLs, each with a short excerpt of at most 15 lines.
+                - Cite only what you read. Mark an inference as an inference.
+                - State what you could not find or verify.
+                - Write in the language of the task, within the length the task gives.
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+            config:
+              read: true
+              readImage: false
+              write: false
+              edit: false
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetchMaxOutputChars: 40000

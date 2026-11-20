@@ -1,0 +1,61 @@
+{
+  "name": "dsh-query-scout",
+  "version": "0.4.0",
+  "description": "Retrieval helper for DeepSeek Harness: the main model delegates code and open-source lookups to a cheaper subagent, with fallback models tried in order, and gets its report back without switching the session model.",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dsh",
+    "subagent",
+    "retrieval",
+    "model-routing"
+  ],
+  "license": "MIT",
+  "author": "xuanfenglajiao",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib/*.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.19",
+    "dsh": ">=0.2.2-rc.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": ">=0.2.2-rc.3",
+    "@deepseek-ai/dsh-scope": ">=0.2.2-rc.3",
+    "@deepseek-ai/dsh-tools": ">=0.2.2-rc.3",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.2-rc.3": "compatible"
+      }
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-model-selection"
+      ]
+    }
+  }
+}

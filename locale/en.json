@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Retrieval helper",
+    "description": "List cheaper models as this session's retrieval subagent from the composer toolbar: the main model delegates code and open-source lookups through the query_scout tool, the next model takes over when one fails, and a report with sources comes back without switching the session model."
+  }
+}
