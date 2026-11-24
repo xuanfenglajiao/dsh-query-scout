@@ -4,11 +4,12 @@
       name: dsh-query-scout
       config:
         # 预置默认值，之后由工具栏面板的「设为默认」改写
+        # 默认模型为 DSH 自带 DeepSeek Account 路由下的 deepseek-flash
         defaults:
           enabled: true
           models:
-            - provider: magpie
-              model: group/deepseek-v4-flash
+            - provider: deepseek-account
+              model: deepseek-flash
     - id: preset-query-scout
       name: '@deepseek-ai/dsh-agent-preset'
       config:

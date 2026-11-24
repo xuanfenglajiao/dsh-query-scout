@@ -80,7 +80,7 @@ DeepSeek Harness 内置的 `subagent` 工具虽然能指定子模型，但模型
 - 用户中断、子代理输出超限、任务被拦截、子代理服务拒绝启动，换模型解决不了，直接结束，不再尝试其他模型。
 - 失败过的模型冷却 2 分钟（`cooldownSec`）：冷却期内排到队尾，前面的模型都失败时仍会尝试它。冷却记录所有会话共用，插件重载后清空。
 - 剩余时限不足 15 秒时不再启动下一个模型。
-- 成功时，报告末尾的标注写明实际作答的模型，以及前面失败或跳过的模型和原因，例如 `[query_scout: magpie/kimi-k3, 31s; magpie/group/deepseek-v4-flash failed: PI_AI_ERROR: ...]`。
+- 成功时，报告末尾的标注写明实际作答的模型，以及前面失败或跳过的模型和原因，例如 `[query_scout: deepseek-account/deepseek-v4-pro, 31s; deepseek-account/deepseek-flash failed: ACCOUNT_QUOTA: Insufficient Balance]`。
 - 全部失败时，`query_scout` 返回错误，逐个列出模型和失败原因，并要求主模型自己完成这次检索；面板显示最近一次检索的结果。
 
 ## 配置
@@ -100,7 +100,7 @@ DeepSeek Harness 内置的 `subagent` 工具虽然能指定子模型，但模型
 | `agentPreset` | `query-scout` | 子代理使用的预设 |
 | `globalToolAllow` | `[]` | 子代理保留的全局工具名 |
 
-本包的 `cordis.patch.yml` 预置了 `magpie / group/deepseek-v4-flash` 作为默认模型，安装后即可直接在面板启用。
+本包的 `cordis.patch.yml` 在安装时写入 `defaults.enabled: true`，并把 DSH 自带的 `deepseek-account / deepseek-flash`（DeepSeek Account 路由下的 DeepSeek-V4.1-Flash）预置为默认模型，不需要先在面板里选模型。该模型依赖 DeepSeek 账号登录和账户余额；账号不可用时，到面板里换成其他提供方的模型，或在列表里加备用模型。
 
 0.3 及更早版本的单模型字段 `defaults.provider`、`defaults.model`、`defaults.reasoningEffort` 仍能读取，作为列表的第一项；「设为默认」写回时改成 `models` 列表。
 
