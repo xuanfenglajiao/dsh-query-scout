@@ -7,7 +7,7 @@
 <a href="#使用">使用</a> · <a href="#失败处理">失败处理</a> · <a href="#配置">配置</a> · <a href="#安装">安装</a> · <a href="#安全与风险">安全与风险</a> · <a href="#兼容性">兼容性</a>
 
 <p>
-  <img src="https://img.shields.io/badge/version-v0.1.0-4d6bfe" alt="version">
+  <img src="https://img.shields.io/badge/version-v0.1.1-4d6bfe" alt="version">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="license"></a>
   <a href="#兼容性"><img src="https://img.shields.io/badge/DSH-%3E%3D0.2.2--rc.3-4d6bfe" alt="DSH"></a>
   <a href="#兼容性"><img src="https://img.shields.io/badge/Node.js-%3E%3D22.19-339933" alt="Node.js"></a>
